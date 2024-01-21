@@ -13,7 +13,7 @@ const MyProfile = () => {
     const router = useRouter();
 
     useEffect(() => {
-        console.log(session.user.id);
+        // console.log(session.user.id);
         console.log(session.user);
         const fetchPosts = async () => {
             const response = await fetch(`/api/users/${session.user.id}/posts`);
