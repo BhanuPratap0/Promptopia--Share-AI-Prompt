@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 const MyProfile = () => {
 
     const {data:session} = useSession();
-    const [posts, setPosts] = useState('');
+    const [allPosts, setAllPosts] = useState('');
     const router = useRouter();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const MyProfile = () => {
             const response = await fetch(`/api/users/${session?.user.id}/posts`);
             const data = await response.json();
             console.log(data);
-            setPosts(data);
+            setAllPosts(data);
         }
         if(session?.user.id) fetchPosts();
     }, [])
@@ -46,7 +46,7 @@ const MyProfile = () => {
         <Profile
             name='My'
             desc='Welcome to your personalized profile page'
-            data={posts}
+            data={allPosts}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
         />
