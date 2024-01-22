@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import PromptCard from './PromptCard'
+import { CircularProgress } from '@mui/material'
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
@@ -21,7 +22,7 @@ const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
 
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const Feed = () => {
           handleTagClick={handleTagClick}
         />
       ) : (
-        <PromptCardList data={posts} handleTagClick={handleTagClick} />
+        (posts != null ? (<PromptCardList data={posts} handleTagClick={handleTagClick} />) : (<CircularProgress style={{color:'black', marginTop:"40px"}} />))
       )}
       {/* <PromptCardList
         data={posts}
